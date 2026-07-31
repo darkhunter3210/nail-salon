@@ -32,7 +32,7 @@ export default function Elegant() {
           <a href="#tryon" onClick={scrollTo('tryon')}>Try-On</a>
           <a href="#services" onClick={scrollTo('services')}>Services</a>
           <Link to="/menu">Full Menu</Link>
-          <a className="rom-book" href="#book">Book now</a>
+          <a className="rom-book" href="#book" onClick={scrollTo('book')}>Book now</a>
         </nav>
       </header>
       <section className="rom-hero">

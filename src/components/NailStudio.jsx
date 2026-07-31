@@ -99,7 +99,7 @@ function Nail({ f, nail, onClick }) {
     </g>
   )
 }
-function Hand({ nails, onNail }) {
+function Hand({ nails, onNail, hint }) {
   return (
     <svg viewBox="0 0 460 520" role="img" aria-label="Interactive hand — tap a nail to paint it">
       <g fill="#f3cdb1">
@@ -117,8 +117,10 @@ function Hand({ nails, onNail }) {
         <path d="M 226 254 q 5 6 0 12" />
         <path d="M 289 278 q 5 6 0 12" />
       </g>
-      {FINGERS.map((f) => (
-        <Nail key={f.id} f={f} nail={nails[f.id]} onClick={() => onNail(f.id)} />
+      {FINGERS.map((f, i) => (
+        <g key={f.id} className={hint ? 'nail-hint' : ''} style={hint ? { animationDelay: `${i * 0.25}s` } : undefined}>
+          <Nail f={f} nail={nails[f.id]} onClick={() => onNail(f.id)} />
+        </g>
       ))}
     </svg>
   )
@@ -128,14 +130,27 @@ const allNails = (value) => Object.fromEntries(FINGERS.map((f) => [f.id, { ...va
 export default function NailStudio() {
   const [sel, setSel] = useState({ color: '#c4879f', finish: 'solid', shape: 'almond' })
   const [nails, setNails] = useState(() => allNails(EMPTY))
+  const [touched, setTouched] = useState(false)
   const colorName = (COLORS.find(([, hex]) => hex === sel.color) || ['Custom'])[0]
   const finishName = FINISHES.find(([k]) => k === sel.finish)[1]
   const shapeName = SHAPES.find(([k]) => k === sel.shape)[1]
   return (
     <div className="studio">
       <div className="studio-hand">
-        <Hand nails={nails} onNail={(id) => setNails((n) => ({ ...n, [id]: { ...sel } }))} />
-        <p className="studio-hint">Tap any nail to paint it with your selection</p>
+        {!touched && (
+          <div className="tap-hint" aria-hidden="true">
+            <span className="tap-hint-finger">👆</span> Tap a nail to paint it
+          </div>
+        )}
+        <Hand
+          nails={nails}
+          hint={!touched}
+          onNail={(id) => {
+            setTouched(true)
+            setNails((n) => ({ ...n, [id]: { ...sel } }))
+          }}
+        />
+        <p className="studio-hint">Pick a polish, then tap any nail — or lacquer all five at once</p>
       </div>
       <div className="studio-controls">
         <h3>1 · Pick a polish</h3>
@@ -174,7 +189,15 @@ export default function NailStudio() {
           Your pick: <strong>{colorName}</strong> · {finishName} · {shapeName}
         </p>
         <div className="studio-actions">
-          <button className="btn-primary" onClick={() => setNails(allNails(sel))}>Lacquer all five :nail_care:</button>
+          <button
+            className="btn-primary"
+            onClick={() => {
+              setTouched(true)
+              setNails(allNails(sel))
+            }}
+          >
+            Lacquer all five &#x1F485;
+          </button>
           <button className="btn-ghost" onClick={() => setNails(allNails(EMPTY))}>Start over</button>
         </div>
       </div>

@@ -196,11 +196,66 @@ button {
   text-align: left;
 }
 .studio-hand {
+  position: relative;
   background: var(--card, #fff);
   border-radius: var(--card-radius, 24px);
   padding: 18px 12px 6px;
   box-shadow: 0 20px 50px rgba(140, 80, 90, 0.14);
 }
+.tap-hint {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  translate: -50% 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink, #4a3138);
+  color: #fff;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  padding: 10px 18px;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(60, 30, 40, 0.3);
+  pointer-events: none;
+  white-space: nowrap;
+  animation: tap-hint-bob 1.6s ease-in-out infinite;
+}
+
+.tap-hint-finger {
+  font-size: 18px;
+  animation: tap-hint-point 1.6s ease-in-out infinite;
+}
+
+@keyframes tap-hint-bob {
+  50% {
+    translate: -50% 6px;
+  }
+}
+
+@keyframes tap-hint-point {
+  50% {
+    translate: 0 4px;
+  }
+}
+
+.nail-hint {
+  animation: nail-pulse 2s ease-in-out infinite;
+}
+
+@keyframes nail-pulse {
+  0%,
+  100% {
+    filter: none;
+  }
+  50% {
+    filter: drop-shadow(0 0 6px rgba(199, 110, 140, 0.9)) brightness(1.06);
+  }
+}
+
 .studio-hand svg {
   width: 100%;
   height: auto;
@@ -360,6 +415,8 @@ button {
   padding: 110px 24px 70px;
   background: radial-gradient(circle at 50% -20%, #f6dee4, transparent 60%);
 }
+
+/* soft colour glows behind the headline */
 .rom-hero::before,
 .rom-hero::after {
   content: '';
@@ -368,7 +425,6 @@ button {
   filter: blur(70px);
   pointer-events: none;
 }
-
 .rom-hero::before {
   width: 420px;
   height: 420px;
@@ -376,7 +432,6 @@ button {
   top: 30%;
   background: radial-gradient(circle, rgba(231, 158, 181, 0.4), transparent 70%);
 }
-
 .rom-hero::after {
   width: 380px;
   height: 380px;
@@ -384,19 +439,16 @@ button {
   top: 12%;
   background: radial-gradient(circle, rgba(212, 175, 116, 0.32), transparent 70%);
 }
-
-.rom-hero > {
+.rom-hero > * {
   position: relative;
   z-index: 1;
 }
-
 .rom-hero-deco {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
 }
-
 .rom-hero-deco .petal {
   position: absolute;
   width: 26px;
@@ -406,7 +458,6 @@ button {
   opacity: 0.45;
   animation: petal-drift 8s ease-in-out infinite;
 }
-
 .rom-hero-deco .spark {
   position: absolute;
   color: #c19a5b;
@@ -414,20 +465,17 @@ button {
   opacity: 0.5;
   animation: spark-twinkle 3.5s ease-in-out infinite;
 }
-
 @keyframes petal-drift {
   50% {
     translate: 0 -18px;
   }
 }
-
 @keyframes spark-twinkle {
   50% {
     opacity: 0.95;
     scale: 1.25;
   }
 }
-
 .rom-hero h1 {
   font-size: clamp(44px, 7vw, 84px);
   line-height: 1.05;
@@ -455,9 +503,8 @@ button {
 }
 .rom-services {
   display: grid;
-  grid-template-columns: repeat(3, 280px);
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 18px;
-  justify-content: center;
 }
 .rom-card {
   background: var(--card);
@@ -632,6 +679,45 @@ button {
   padding: 70px 24px 80px;
   background: #f2dfe3;
   margin-top: 40px;
+}
+/* ---------- mobile ---------- */
+@media (max-width: 700px) {
+  .rom-nav {
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px;
+    position: static;
+  }
+  .rom-nav nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 18px;
+    font-size: 12px;
+  }
+  .rom-logo {
+    font-size: 22px;
+    white-space: nowrap;
+  }
+  .rom-hero {
+    padding: 70px 20px 50px;
+  }
+  .section {
+    padding: 56px 16px;
+  }
+  .car-slide img {
+    height: 320px;
+  }
+  .car-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+  .menu-cat {
+    padding: 26px 20px 12px;
+  }
+  .rom-footer {
+    padding: 54px 20px 60px;
+  }
 }
 .rom-footer h2 {
   font-size: 34px;
