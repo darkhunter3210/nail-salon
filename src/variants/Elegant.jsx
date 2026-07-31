@@ -1,6 +1,13 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import GalleryCarousel from '../components/GalleryCarousel.jsx'
 import NailStudio from '../components/NailStudio.jsx'
+
+const scrollTo = (id) => (e) => {
+  e.preventDefault()
+  document.getElementById(id)?.scrollIntoView({behavior: 'smooth'})
+}
+
 const CATEGORIES = [
   ['Manicure', 'manicure'],
   ['Pedicure', 'pedicure'],
@@ -10,6 +17,10 @@ const CATEGORIES = [
   ['VIP Spa', 'vip-spa'],
 ]
 export default function Elegant() {
+  useEffect(() => {
+    window.scrollTo(0,0)
+  }, [])
+  
   return (
     <div className="theme theme-romance">
       <header className="rom-nav">
@@ -17,9 +28,9 @@ export default function Elegant() {
           La Bella &amp; Nail Spa
         </Link>
         <nav>
-          <a href="#gallery">Gallery</a>
-          <a href="#tryon">Try-On</a>
-          <a href="#services">Services</a>
+          <a href="#gallery" onClick={scrollTo('gallery')}>Gallery</a>
+          <a href="#tryon" onClick={scrollTo('tryon')}>Try-On</a>
+          <a href="#services" onClick={scrollTo('services')}>Services</a>
           <Link to="/menu">Full Menu</Link>
           <a className="rom-book" href="#book">Book now</a>
         </nav>
@@ -47,8 +58,8 @@ export default function Elegant() {
           A quiet pink-and-cream studio where every set is hand-finished, one nail at a time.
         </p>
         <div className="rom-hero-actions">
-          <a className="btn-primary" href="#tryon">Try a colour on</a>
-          <a className="btn-ghost" href="#gallery">See our work</a>
+          <a className="btn-primary" href="#tryon" onClick={scrollTo('tryon')}>Try a colour on</a>
+          <a className="btn-ghost" href="#gallery" onClick={scrollTo('gallery')}>See our work</a>
         </div>
         <div className="rom-divider">❦</div>
       </section>
