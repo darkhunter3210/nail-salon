@@ -382,7 +382,9 @@ button {
   -webkit-backdrop-filter: blur(8px);
 }
 /* keep anchored sections from hiding under the sticky nav */
-.theme-romance .section,
+.theme-romance .section {
+  scroll-margin-top: 16px;
+}
 .rom-footer {
   scroll-margin-top: 90px;
 }
@@ -504,8 +506,19 @@ button {
 .rom-services {
   display: grid;
   grid-template-columns: repeat(3, 280px);
+  justify-content: center;
   gap: 18px;
 }
+@media (max-width: 940px) {
+  .rom-services {
+    grid-template-columns: repeat(2,280px);
+  }
+}
+  @media (max-width: 940px) {
+    .rom-services {
+      grid-template-columns: min(280px,100%);
+    }
+  }
 .rom-card {
   background: var(--card);
   border: 1px solid var(--line);
@@ -684,19 +697,24 @@ button {
 @media (max-width: 700px) {
   .rom-nav {
     flex-direction: column;
-    gap: 14px;
-    padding: 16px;
-    position: static;
+    gap: 8px;
+    padding: 10px 12px;
   }
   .rom-nav nav {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px 18px;
-    font-size: 12px;
+    gap: 8px 14px;
+    font-size: 11px;
   }
   .rom-logo {
-    font-size: 22px;
+    font-size: 20px;
     white-space: nowrap;
+  }
+  .rom-book {
+    padding: 6px 14px;
+  }
+  .theme-romance .section {
+    scroll-margin-top: 56px;
   }
   .rom-hero {
     padding: 70px 20px 50px;

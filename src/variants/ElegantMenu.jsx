@@ -55,7 +55,7 @@ export default function ElegantMenu() {
   return (
     <div className="theme theme-romance">
       <header className="rom-nav">
-        <Link className="rom-logo" to="/">La Bella &amp; Nail Spa</Link>
+        <Link className="rom-logo" to="/">La Belle &amp; Nail Spa</Link>
         <nav>
           <Link to="/">← Back home</Link>
           <a
@@ -98,7 +98,7 @@ export default function ElegantMenu() {
         </div>
       </section>
       <footer className="rom-footer" id="book">
-      <h2>La Bella &amp; Nail Spa</h2>
+      <h2>La Belle &amp; Nail Spa</h2>
         <p>290 New Dorp Ln, Staten Island, NY, 10306 · Open daily 10-7 closed Tuesdays · (718) 887-8183</p>
         <a className="btn-primary" href="tel:+17188878183">Reserve your chair</a>
       </footer>

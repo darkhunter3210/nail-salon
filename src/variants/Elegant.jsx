@@ -25,7 +25,7 @@ export default function Elegant() {
     <div className="theme theme-romance">
       <header className="rom-nav">
         <Link className="rom-logo" to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          La Bella &amp; Nail Spa
+          La Belle &amp; Nail Spa
         </Link>
         <nav>
           <a href="#gallery" onClick={scrollTo('gallery')}>Gallery</a>
@@ -87,7 +87,7 @@ export default function Elegant() {
         <Link className="btn-ghost rom-menu-link" to="/menu">View the full menu →</Link>
       </section>
       <footer className="rom-footer" id="book">
-        <h2>La Bella &amp; Nail Spa</h2>
+        <h2>La Belle &amp; Nail Spa</h2>
         <p>290 New Dorp Ln, Staten Island, NY, 10306 · Open daily 10-7 closed Tuesdays · (718) 887-8183</p>
         <a className="btn-primary" href="tel:+17188878183">Reserve your chair</a>
       </footer>
