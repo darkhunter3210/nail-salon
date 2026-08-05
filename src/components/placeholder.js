@@ -7,6 +7,8 @@ import image4 from "../assets/image4.jpeg";
 import image5 from "../assets/image5.jpeg";
 import image6 from "../assets/image6.jpeg";
 import image7 from "../assets/image7.jpeg";
+import image8 from "../assets/image8.jpeg";
+import image9 from "../assets/image9.jpeg";
 
 function svgDataUri(from, to, label, deco) {
   const svg = `
@@ -41,4 +43,6 @@ export const DEFAULT_GALLERY = [
   { src: image5, caption: "Image 5" },
   { src: image6, caption: "Image 6" },
   { src: image7, caption: "Image 7" },
+  { src: image8, caption: "Image 8" },
+  { src: image9, caption: "Image 9" },
 ]
